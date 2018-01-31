@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class myHuffmanTree {
+public class HuffmanTree {
     public LinkedList<treeNode> list = new LinkedList<treeNode>();
     public treeNode[] validnode;
     //对各个字符的权重进行排序

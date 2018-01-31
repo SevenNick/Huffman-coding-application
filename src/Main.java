@@ -1,8 +1,13 @@
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.*;
@@ -11,13 +16,13 @@ public class Main extends Application {
     static int[] weight = new int[256];
     static String[] value = new String[256];
     static String[] code = new String[256];
-    static String[] savecode = new String[256];
-    static String pacpath="";//要压缩的文件夹在哪里
-    static String respacpath="";//压缩的文件放在哪里
+
+    static String srcPath="";//要压缩的文件夹在哪里
+    static String destPath="";//压缩的文件放在哪里
     public static void main(String args[]){
         launch(args);
     }
-    public static void haha(String src,String dest){
+    public static void compress(String src,String dest){
         String filene="";
         File file = new File(src);
         all:{//这个all好像多此一举了
@@ -29,7 +34,7 @@ public class Main extends Application {
             }
         }
         if(file.isFile()){
-            compressfun(src,dest+"\\"+filene);
+            compressFun(src,dest+"\\"+filene);
         }
         else {
             File file2 = new File(dest+"\\"+filene);
@@ -38,15 +43,15 @@ public class Main extends Application {
             for (int i = 0;i< filename.length;i++){
                 File file1 = new File(src+"\\"+filename[i]);
                 if(file1.isDirectory()){
-                    haha(src+"\\"+filename[i],dest+"\\"+filene);
+                    compress(src+"\\"+filename[i],dest+"\\"+filene);
                 }
                 else {
-                    compressfun(src+"\\"+filename[i],dest+"\\"+filene+"\\"+filename[i]);
+                    compressFun(src+"\\"+filename[i],dest+"\\"+filene+"\\"+filename[i]);
                 }
             }
         }
     }
-    public static void hehe(String src,String dest){
+    public static void decompress(String src,String dest){
         String filene="";
         File file = new File(src);
         all:{
@@ -58,7 +63,7 @@ public class Main extends Application {
             }
         }
         if(file.isFile()){
-            decompressfun(src,dest+"\\"+filene);
+            decompressFun(src,dest+"\\"+filene);
         }
         else {
             File file2 = new File(dest+"\\"+filene);
@@ -67,46 +72,29 @@ public class Main extends Application {
             for (int i = 0;i< filename.length;i++){
                 File file1 = new File(src+"\\"+filename[i]);
                 if(file1.isDirectory()){
-                    hehe(src+"\\"+filename[i],dest+"\\"+filene);
+                    decompress(src+"\\"+filename[i],dest+"\\"+filene);
                 }
                 else {
-                    decompressfun(src+"\\"+filename[i],dest+"\\"+filene+"\\"+filename[i]);
+                    decompressFun(src+"\\"+filename[i],dest+"\\"+filene+"\\"+filename[i]);
                 }
             }
         }
     }
-    public static void compressfun(String src,String dest){
-        getarr(src);
-        savetree(dest);
-        myHuffmanTree mytree = new myHuffmanTree();
-        mytree.createTree(weight,value);//构建出哈夫曼树
-        gaincode(mytree.validnode);
-        mycompress(src,dest);
+    public static void compressFun(String src,String dest){
+        countWeight(src);
+        saveTree(dest);
+        HuffmanTree initialTree = new HuffmanTree();
+        initialTree.createTree(weight,value);//构建出哈夫曼树
+        gainCode(initialTree.validnode);
+        myCompress(src,dest);
         return;
     }
-    public static void decompressfun(String source,String dest){
-        mydecompress(source,dest);
+    public static void decompressFun(String source,String dest){
+        myDecompress(source,dest);
         return;
     }
-    public static void gaincode(treeNode[] nodes){
-        for(int i = 0;i < nodes.length;i++){
-            String result = "";
-            treeNode node = nodes[i];
-            int index = Integer.parseInt(node.getValue());
-            while (node.getParent() != null){
-                if(node.getParent().getChildLeft() == node){
-                    result = "0" + result;
-                }
-                else {
-                    result = "1" + result;
-                }
-                node = node.getParent();
-            }
-            code[index]=result;
-        }
-        return;
-    }
-    public static void getarr(String path){
+    //统计0-255出现的次数
+    public static void countWeight(String path){
         for(int i = 0; i < 256;i++){
             weight[i]=0;
             value[i]=i+"";
@@ -127,7 +115,51 @@ public class Main extends Application {
         }
         return;
     }
-    public static void mycompress(String source,String dest){
+    //储存重构哈夫曼树所需要的信息
+    public static void saveTree(String path){
+        int num=0;
+        try {
+            OutputStream os = new FileOutputStream(path);
+            DataOutputStream dos = new DataOutputStream(os);
+            for(int i = 0;i < 256;i++){
+                if(weight[i] !=0){
+                    num++;
+                }
+            }
+            dos.writeInt(num);
+            for(int i = 0;i < 256;i++){
+                if(weight[i] !=0){
+                    dos.writeInt(i);
+                    dos.writeInt(weight[i]);
+                }
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return;
+    }
+    //获得编码
+    public static void gainCode(treeNode[] nodes){
+        for(int i = 0;i < nodes.length;i++){
+            String result = "";
+            treeNode node = nodes[i];
+            int index = Integer.parseInt(node.getValue());
+            while (node.getParent() != null){
+                if(node.getParent().getChildLeft() == node){
+                    result = "0" + result;
+                }
+                else {
+                    result = "1" + result;
+                }
+                node = node.getParent();
+            }
+            code[index]=result;
+        }
+        return;
+    }
+
+    public static void myCompress(String source,String dest){
         try {
             // 一次读一个字节
             InputStream is=new FileInputStream(source);
@@ -173,43 +205,8 @@ public class Main extends Application {
         }
         return;
     }
-    //储存重构哈夫曼树所需要的信息
-    public static void savetree(String path){
-        int num=0;
-        try {
-            /*FileWriter fw = new FileWriter(file);
-            BufferedWriter bw = new BufferedWriter(fw);
-            for(int i = 0;i < 256;i++){
-                bw.write(weight[i]);
-                bw.write(" ");
-                System.out.print("1");
-            }*/
-            OutputStream os = new FileOutputStream(path);
-            DataOutputStream dos = new DataOutputStream(os);
-            for(int i = 0;i < 256;i++){
-                if(weight[i] !=0){
-                    num++;
-                }
-            }
-            dos.writeInt(num);
-            for(int i = 0;i < 256;i++){
-                if(weight[i] !=0){
-                    dos.writeInt(i);
-                    dos.writeInt(weight[i]);
-                }
-            }
-           /* FileInputStream fi = new FileInputStream(file);
-            int b;
-            while ((b=fi.read()) != -1){
-                System.out.println(b);
-            }*/
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        return;
-    }
-    public static void mydecompress(String source,String dest){
+
+    public static void myDecompress(String source,String dest){
         int num = 0;
         try {
             InputStream is=new FileInputStream(source);
@@ -225,7 +222,7 @@ public class Main extends Application {
                 weight[in.readInt()]=in.readInt();
                 num--;
             }
-            myHuffmanTree recontree = new myHuffmanTree();
+            HuffmanTree recontree = new HuffmanTree();
             recontree.createTree(weight,value);
             treeNode root = recontree.list.get(0);
             treeNode ele = root;
@@ -394,131 +391,148 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("简易压缩器");
-        primaryStage.setHeight(200);
-        primaryStage.setWidth(300);
+        primaryStage.setHeight(400);
+        primaryStage.setWidth(400);
         //初始界面
-        GridPane pane = new GridPane();
+        GridPane initialPane = new GridPane();
+        Button cp = new Button("Compress");
+        Button dcp = new Button("Decompress");
+        initialPane.setConstraints(cp,0,0);
+        initialPane.setConstraints(dcp,1,0);
+        initialPane.setPadding(new Insets(40));
+        initialPane.getChildren().addAll(cp,dcp);
+        initialPane.setHgap(10);initialPane.setAlignment(Pos.CENTER);
         //压缩界面
-        GridPane pane1 = new GridPane();
-        //解压界面
-        GridPane pane2 = new GridPane();
-        //初始界面
-        Button com = new Button("Compress");
-        Button decom = new Button("Decompress");
-        //压缩界面
-        Button button1 = new Button("压缩文件");
-        Button button2 = new Button("压缩文件夹");
-        Button button3 = new Button("压缩到....");
-        Button button4 = new Button("开始压缩....");
-        //解压界面
-        Button button5 = new Button("解压文件");
-        Button button6 = new Button("这里不能点");
-        Button button7 = new Button("解压到....");
-        Button button8 = new Button("开始解压....");
+        GridPane cpPane = new GridPane();
+        Button cpFile = new Button("压缩文件");cpFile.setMinWidth(80);
+        TextField fpath=new TextField();fpath.setEditable(false);
 
-        //返回按钮
+        Button cpDir = new Button("压缩文件夹");cpDir.setMinWidth(80);
+        TextField dirpath=new TextField();dirpath.setEditable(false);
+
+        Button cpTo = new Button("压缩到....");cpTo.setMinWidth(80);
+        TextField destpath=new TextField();destpath.setEditable(false);
+
+        Button cpBegin = new Button("开始压缩....");cpBegin.setMinWidth(80);
         Button button = new Button("返回");
-        Button button9 = new Button("返回");
-        //初始界面
-        pane.setConstraints(com,0,0);
-        pane.setConstraints(decom,1,0);
-        pane.setPadding(new Insets(40));
-        pane.getChildren().addAll(com,decom);
-        //压缩界面
-        pane1.setConstraints(button1,0,0);
-        pane1.setConstraints(button2,1,0);
-        pane1.setConstraints(button3,0,1);
-        pane1.setConstraints(button4,1,1);
-        pane1.setConstraints(button,0,2);
-        pane1.setPadding(new Insets(40));
-        pane1.getChildren().addAll(button1,button2,button3,button4,button);
-        //解压界面
-        pane2.setConstraints(button5,0,0);
-        pane2.setConstraints(button6,1,0);
-        pane2.setConstraints(button7,0,1);
-        pane2.setConstraints(button8,1,1);
-        pane2.setConstraints(button9,0,2);
-        pane2.setPadding(new Insets(40));
-        pane2.getChildren().addAll(button5,button6,button7,button8,button9);
 
-        Scene scene = new Scene(pane);
-        Scene scene1 = new Scene(pane1);
-        Scene scene2 = new Scene(pane2);
-        com.setOnAction(event -> {
-            primaryStage.setScene(scene1);
+        Label result=new Label("Welcome!");
+
+        cpPane.setConstraints(cpFile,0,0);cpPane.setConstraints(fpath,1,0);
+        cpPane.setConstraints(cpDir,0,1);cpPane.setConstraints(dirpath,1,1);
+        cpPane.setConstraints(cpTo,0,2);cpPane.setConstraints(destpath,1,2);
+        cpPane.setConstraints(cpBegin,0,3);
+        cpPane.setConstraints(button,1,3);
+        cpPane.setConstraints(result,0,4,2,2);
+        cpPane.setPadding(new Insets(40));
+        cpPane.getChildren().addAll(cpFile,cpDir,cpTo,cpBegin,button,fpath,dirpath,destpath,result);
+        cpPane.setHgap(10); cpPane.setVgap(10);cpPane.setAlignment(Pos.CENTER);
+        //解压界面
+        GridPane dcpPane = new GridPane();
+        Button dcpFile = new Button("解压文件");dcpFile.setMinWidth(80);
+        TextField fpath1=new TextField();fpath1.setEditable(false);
+
+        Button useless = new Button("这里不能点");useless.setMinWidth(80);
+        TextField dirpath1=new TextField("This is useless!");dirpath1.setEditable(false);
+
+        Button dcpTo = new Button("解压到....");dcpTo.setMinWidth(80);
+        TextField destpath1=new TextField();destpath1.setEditable(false);
+
+        Button dcpBegin = new Button("开始解压....");dcpBegin.setMinWidth(80);
+        Button button1 = new Button("返回");
+
+        Label result1=new Label("Welcome!");
+
+        dcpPane.setConstraints(dcpFile,0,0);dcpPane.setConstraints(fpath1,1,0);
+        dcpPane.setConstraints(useless,0,1);dcpPane.setConstraints(dirpath1,1,1);
+        dcpPane.setConstraints(dcpTo,0,2);dcpPane.setConstraints(destpath1,1,2);
+        dcpPane.setConstraints(dcpBegin,0,3);
+        dcpPane.setConstraints(button1,1,3);
+        dcpPane.setConstraints(result1,0,4,2,2);
+
+        dcpPane.setPadding(new Insets(40));
+        dcpPane.getChildren().addAll(dcpFile,useless,dcpTo,dcpBegin,button1,fpath1,dirpath1,destpath1,result1);
+
+        dcpPane.setHgap(10); dcpPane.setVgap(10);dcpPane.setAlignment(Pos.CENTER);
+        Scene initialScene = new Scene(initialPane);
+        Scene cpScene = new Scene(cpPane);
+        Scene dcpScene = new Scene(dcpPane);
+        cp.setOnAction(event -> {
+            primaryStage.setScene(cpScene);
         });
-        decom.setOnAction(event -> {
-            primaryStage.setScene(scene2);
+        dcp.setOnAction(event -> {
+            primaryStage.setScene(dcpScene);
         });
         button.setOnAction(event -> {
-            primaryStage.setScene(scene);
+            primaryStage.setScene(initialScene);
         });
-        button9.setOnAction(event -> {
-            primaryStage.setScene(scene);
+        button1.setOnAction(event -> {
+            primaryStage.setScene(initialScene);
         });
-        button1.setOnAction(event ->{
+        cpFile.setOnAction(event ->{
             JFileChooser fileChooser = new JFileChooser();
             int returnVal = fileChooser.showOpenDialog(fileChooser);
             if(returnVal == JFileChooser.APPROVE_OPTION){
                 String filePath= fileChooser.getSelectedFile().getAbsolutePath();
-                pacpath=filePath;
+                srcPath=filePath;
+                fpath.setText(filePath);
+                dirpath.setText("");
             }
         });
-        button5.setOnAction(event ->{
+        dcpFile.setOnAction(event ->{
             JFileChooser fileChooser = new JFileChooser();
             int returnVal = fileChooser.showOpenDialog(fileChooser);
             if(returnVal == JFileChooser.APPROVE_OPTION){
                 String filePath= fileChooser.getSelectedFile().getAbsolutePath();
-                pacpath=filePath;
+                srcPath=filePath;
+                fpath1.setText(filePath);
             }
         });
-        button2.setOnAction(event ->{
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            int returnVal = fileChooser.showOpenDialog(fileChooser);
-            if(returnVal == JFileChooser.APPROVE_OPTION){
-                String filePath= fileChooser.getSelectedFile().getAbsolutePath();
-                pacpath=filePath;
-            }
-        });
-        button6.setOnAction(event ->{
+        cpDir.setOnAction(event ->{
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             int returnVal = fileChooser.showOpenDialog(fileChooser);
             if(returnVal == JFileChooser.APPROVE_OPTION){
                 String filePath= fileChooser.getSelectedFile().getAbsolutePath();
-                pacpath=filePath;
+                srcPath=filePath;
+                dirpath.setText(filePath);
+                fpath.setText("");
             }
         });
-        button3.setOnAction(event ->{
+        useless.setOnAction(event ->{
+            //do nothing
+        });
+        cpTo.setOnAction(event ->{
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             int returnVal = fileChooser.showOpenDialog(fileChooser);
             if(returnVal == JFileChooser.APPROVE_OPTION){
                 String filePath= fileChooser.getSelectedFile().getAbsolutePath();
-                respacpath=filePath;
+                destPath=filePath;
+                destpath.setText(filePath);
             }
         });
-        button7.setOnAction(event ->{
+        dcpTo.setOnAction(event ->{
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             int returnVal = fileChooser.showOpenDialog(fileChooser);
             if(returnVal == JFileChooser.APPROVE_OPTION){
                 String filePath= fileChooser.getSelectedFile().getAbsolutePath();
-                respacpath=filePath;
+                destPath=filePath;
+                destpath1.setText(filePath);
             }
         });
-        button4.setOnAction(event ->{
-            System.out.println("Begin!");
-            haha(pacpath,respacpath);
-            System.out.println("Success!");
+        cpBegin.setOnAction(event ->{
+            result.setText("Begin!");
+            compress(srcPath,destPath);
+            result.setText("Success!");
         });
-        button8.setOnAction(event ->{
-            System.out.println("Begin!");
-            hehe(pacpath,respacpath);
-            System.out.println("Success!");
+        dcpBegin.setOnAction(event ->{
+            result1.setText("Begin!");
+            decompress(srcPath,destPath);
+            result1.setText("Success!");
         });
-        primaryStage.setScene(scene);
+        primaryStage.setScene(initialScene);
         primaryStage.show();
     }
 }
