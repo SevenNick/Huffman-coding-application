@@ -3,26 +3,25 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.*;
 
 public class Main extends Application {
-    static int[] weight = new int[256];
-    static String[] value = new String[256];
+    static long[] weight = new long[256];
     static String[] code = new String[256];
 
     static String srcPath="";//要压缩的文件夹在哪里
     static String destPath="";//压缩的文件放在哪里
+
+    private static TreeNode root;
     public static void main(String args[]){
         launch(args);
     }
-    public static void compress(String src,String dest){
+/*    public static void compress(String src,String dest){
         String filene="";
         File file = new File(src);
         all:{//这个all好像多此一举了
@@ -79,25 +78,22 @@ public class Main extends Application {
                 }
             }
         }
-    }
-    public static void compressFun(String src,String dest){
+    }*/
+/*    public static void compressFun(String src,String dest){
         countWeight(src);
         saveTree(dest);
-        HuffmanTree initialTree = new HuffmanTree();
-        initialTree.createTree(weight,value);//构建出哈夫曼树
-        gainCode(initialTree.validnode);
+        HuffmanTree huffmanTree= new HuffmanTree();
+        huffmanTree.createHuffmanTree(weight);//构建出哈夫曼树
+        gainCode(huffmanTree.getMeanningfulNodeList());
         myCompress(src,dest);
-        return;
-    }
-    public static void decompressFun(String source,String dest){
+    }*/
+/*    public static void decompressFun(String source,String dest){
         myDecompress(source,dest);
-        return;
-    }
+    }*/
     //统计0-255出现的次数
-    public static void countWeight(String path){
+/*    public static void countWeight(String path){
         for(int i = 0; i < 256;i++){
             weight[i]=0;
-            value[i]=i+"";
         }
         File file = new File(path);
         InputStream in = null;
@@ -106,45 +102,45 @@ public class Main extends Application {
             in = new FileInputStream(file);
             int tempbyte;
             while ((tempbyte = in.read()) != -1) {
-                weight[tempbyte] += 1;
+                weight[tempbyte]++;
             }
             in.close();
         } catch (IOException e) {
             e.printStackTrace();
-            return;
         }
-        return;
-    }
+    }*/
     //储存重构哈夫曼树所需要的信息
-    public static void saveTree(String path){
-        int num=0;
+    /*public static void saveTree(String path){
         try {
             OutputStream os = new FileOutputStream(path);
             DataOutputStream dos = new DataOutputStream(os);
-            for(int i = 0;i < 256;i++){
-                if(weight[i] !=0){
-                    num++;
-                }
-            }
-            dos.writeInt(num);
-            for(int i = 0;i < 256;i++){
-                if(weight[i] !=0){
-                    dos.writeInt(i);
-                    dos.writeInt(weight[i]);
-                }
+//            for(int i = 0;i < 256;i++){
+//                if(weight[i] !=0){
+//                    num++;
+//                }
+//            }
+//            dos.writeInt(num);
+//            for(int i = 0;i < 256;i++){
+//                if(weight[i] !=0){
+//                    dos.writeInt(i);
+//                    dos.writeInt(weight[i]);
+//                }
+//            }
+            for (int i = 0; i < 256; i++) {
+                dos.writeLong(weight[i]);
             }
         }
         catch (IOException e){
             e.printStackTrace();
         }
         return;
-    }
+    }*/
     //获得编码
-    public static void gainCode(treeNode[] nodes){
+/*    public static void gainCode(TreeNode[] nodes){
         for(int i = 0;i < nodes.length;i++){
             String result = "";
-            treeNode node = nodes[i];
-            int index = Integer.parseInt(node.getValue());
+            TreeNode node = nodes[i];
+            int index = node.getValue();
             while (node.getParent() != null){
                 if(node.getParent().getChildLeft() == node){
                     result = "0" + result;
@@ -157,32 +153,30 @@ public class Main extends Application {
             code[index]=result;
         }
         return;
-    }
+    }*/
 
-    public static void myCompress(String source,String dest){
+    /*public static void myCompress(String source,String dest){
         try {
             // 一次读一个字节
+            File file = new File(source);
+            long fileSize = file.length();
             InputStream is=new FileInputStream(source);
             DataInputStream in = new DataInputStream(is);
             OutputStream os = new FileOutputStream(dest,true);
             DataOutputStream out = new DataOutputStream(os);
-            //用于记录重构哈夫曼树所需要的数据
-            //for(int i = 0;i < 256;i++){
-            //  out.write(weight[i]);
-            //  }
+
+            out.writeLong(fileSize);
+
             int tempbyte;
             String record ="";//用于记录编码
             String gainbyte="";//用于把8位编码转换成byte
             byte result;
             while ((tempbyte = in.read()) != -1) {
                 record += code[tempbyte];
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //这里有问题，如果最后一个不足八位怎么办？
                 while (record.length()>8 || record.length() == 8){
                     gainbyte=record.substring(0,8);
                     if(record.length()>8){
-                        record = record.substring(8,record.length());
+                        record = record.substring(8);
                     }
                     else {
                         record="";
@@ -191,10 +185,10 @@ public class Main extends Application {
                     out.writeByte(result);
                 }
             }
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //这里如何处理八位八位后剩下的不足八位的代码？
             if(record.length() != 0){
+                for (; record.length() < 8;) {
+                    record = record + "0";
+                }
                 result = Integer.valueOf(record,2).byteValue();
                 out.writeByte(result);
             }
@@ -204,34 +198,47 @@ public class Main extends Application {
             return;
         }
         return;
-    }
+    }*/
 
-    public static void myDecompress(String source,String dest){
-        int num = 0;
+    /*public static void myDecompress(String source,String dest){
+
         try {
             InputStream is=new FileInputStream(source);
             DataInputStream in = new DataInputStream(is);
             OutputStream os = new FileOutputStream(dest);
             DataOutputStream out = new DataOutputStream(os);
             for(int i = 0;i < 256;i++){
-                weight[i]=0;
-                value[i] = i+"";
+                weight[i]= in.readLong();
             }
-            num = in.readInt();
-            while (num > 0){
-                weight[in.readInt()]=in.readInt();
-                num--;
-            }
-            HuffmanTree recontree = new HuffmanTree();
-            recontree.createTree(weight,value);
-            treeNode root = recontree.list.get(0);
-            treeNode ele = root;
-            int a,b,c,d,e,f,g,h,rbyte;
-            while ((rbyte=in.read()) != -1){
+            HuffmanTree huffmanTree = new HuffmanTree();
+            root = huffmanTree.createHuffmanTree(weight);
+
+            long fileSize = in.readLong();
+
+            TreeNode ele = root;
+            int rbyte;
+            while ((rbyte=in.read()) != -1 && fileSize>0){
                 String binofint = Integer.toBinaryString((int) rbyte);
-                String binofbyte="";
                 //补足为8位！
-                if(binofint.length()-8<0){
+                for (;binofint.length()<8;){
+                    binofint ="0"+binofint;
+                }
+                for (int i=0;i<binofint.length();i++){
+                    if(binofint.charAt(i)=='0')
+                        ele = ele.getChildLeft();
+                    else
+                        ele = ele.getChildRight();
+                    if(ele.getChildLeft()==null && ele.getChildRight() == null){
+                        int resultofint = ele.getValue();
+                        byte result = (byte)resultofint;
+                        out.writeByte(result);
+                        fileSize--;
+                        if (fileSize==0)
+                            break;
+                        ele=root;
+                    }
+                }
+               *//* if(binofint.length()-8<0){
                     if(8-binofint.length()==1){
                         binofbyte = "0"+binofint;
                     }
@@ -264,9 +271,9 @@ public class Main extends Application {
                 e=Integer.parseInt(binofbyte.substring(4,5));
                 f=Integer.parseInt(binofbyte.substring(5,6));
                 g=Integer.parseInt(binofbyte.substring(6,7));
-                h=Integer.parseInt(binofbyte.substring(7,8));
-                int i = 0;
-                while (i <8){
+                h=Integer.parseInt(binofbyte.substring(7,8));*//*
+                //int i = 0;
+               *//* while (i <8){
                     if(i==0){
                         if(a == 0){
                             ele = ele.getChildLeft();
@@ -275,7 +282,7 @@ public class Main extends Application {
                             ele=ele.getChildRight();
                         }
                         if(ele.getChildLeft()==null && ele.getChildRight() == null){
-                            int resultofint = Integer.parseInt(ele.getValue());
+                            int resultofint = ele.getValue();
                             byte result = (byte)resultofint;
                             out.writeByte(result);
                             ele=root;
@@ -289,7 +296,7 @@ public class Main extends Application {
                             ele=ele.getChildRight();
                         }
                         if(ele.getChildLeft()==null && ele.getChildRight() == null){
-                            int resultofint = Integer.parseInt(ele.getValue());
+                            int resultofint = ele.getValue();
                             byte result = (byte)resultofint;
                             out.writeByte(result);
                             ele=root;
@@ -380,14 +387,14 @@ public class Main extends Application {
                         }
                     }
                     i++;
-                }
+                }*//*
             }
+            in.close();
+            out.close();
         } catch (IOException e) {
             e.printStackTrace();
-            return;
         }
-        return;
-    }
+    }*/
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("简易压缩器");
@@ -524,12 +531,12 @@ public class Main extends Application {
         });
         cpBegin.setOnAction(event ->{
             result.setText("Begin!");
-            compress(srcPath,destPath);
+//            compress(srcPath,destPath);
             result.setText("Success!");
         });
         dcpBegin.setOnAction(event ->{
             result1.setText("Begin!");
-            decompress(srcPath,destPath);
+//            decompress(srcPath,destPath);
             result1.setText("Success!");
         });
         primaryStage.setScene(initialScene);
