@@ -10,52 +10,57 @@ public class CompressTool {
         code = new String[256];
     }
 
-    public  void  testCompress(String src, String dest){
-        destFile =dest;
-        compressIterator(src,"");
+    /**
+     * @param src  : the file or folder to compress
+     * @param dest : the output file
+     */
+    public void compress(String src, String dest) {
+        destFile = dest;
+        compressDirectory(src, "");
     }
 
-    public void compressIterator(String src, String baseURL){
-        String currentLevel="";
-        for(int i =src.length()-1;i>0;i--){
+    //compress folder(directory) using recursion
+    private void compressDirectory(String src, String baseUrl) {
+        String currentPosition = src.substring(src.lastIndexOf('\\') + 1);
+        /*for(int i =src.length()-1;i>0;i--){
             if(src.charAt(i)=='\\') {
-                currentLevel=src.substring(i+1);
+                currentPosition=src.substring(i+1);
                 break;
             }
-        }
-        baseURL += "\\"+currentLevel;
+        }*/
+        baseUrl += "\\" + currentPosition;
 
         File file = new File(src);
-        if(file.isFile()){
-            compressFile(src,baseURL);
-        }
-        else {
-            String[] filename = file.list();
-            if (filename.length==0){
+        if (file.isFile()) {
+            compressFile(src, baseUrl);
+        } else {
+            String[] files = file.list();
+
+            if (files.length == 0) {//handle empty folder
                 try {
-                    OutputStream os = new FileOutputStream(destFile,true);
-                    DataOutputStream dos = new DataOutputStream(os);
-                    dos.writeChars(baseURL+"\\"+"\n");
-                }
-                catch (IOException e){
+                    DataOutputStream dos = new DataOutputStream(new FileOutputStream(destFile, true));
+                    dos.writeChars(baseUrl + "\\" + "\n");//use \ in the end to refer empty folder
+                    dos.close();
+                    return;
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            for (int i = 0;i< filename.length;i++){
-                File file1 = new File(src+"\\"+filename[i]);
-                if(file1.isDirectory()){
-                    compressIterator(src+"\\"+filename[i],baseURL);
-                }
-                else {
-                    compressFile(src+"\\"+filename[i],baseURL+"\\"+filename[i]);
+
+            for (int i = 0; i < files.length; i++) {
+                File file1 = new File(src + "\\" + files[i]);
+                if (file1.isDirectory()) {
+                    compressDirectory(src + "\\" + files[i], baseUrl);
+                } else {
+                    compressFile(src + "\\" + files[i], baseUrl + "\\" + files[i]);
                 }
             }
         }
     }
 
-    public void compressFile(String src, String baseUrl) {
+    private void compressFile(String src, String baseUrl) {
         countWeight(src);
-        saveTree(destFile,baseUrl);
+        saveMessage(baseUrl);
         HuffmanTree huffmanTree = new HuffmanTree();
         huffmanTree.createHuffmanTree(weight);//构建出哈夫曼树
         gainCode(huffmanTree.getMeanningfulNodeList());
@@ -79,18 +84,15 @@ public class CompressTool {
         }
     }
 
-    //save the message for tree re-construction
-    private void saveTree(String path, String baseUrl) {
-        System.out.println(baseUrl);
+    //save the message for decompress and tree re-construction
+    private void saveMessage(String baseUrl) {
         try {
-            OutputStream os = new FileOutputStream(path,true);
-            DataOutputStream dos = new DataOutputStream(os);
-            dos.writeChars(baseUrl+"\n");
+            DataOutputStream dos = new DataOutputStream(new FileOutputStream(destFile, true));
+            dos.writeChars(baseUrl + "\n");
             for (int i = 0; i < 256; i++) {
                 dos.writeLong(weight[i]);
             }
             dos.close();
-            System.out.println();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -114,6 +116,7 @@ public class CompressTool {
         }
     }
 
+    //huffman-compress main function (for file: source)
     private void compress(String source) {
         try {
             File file = new File(source);
@@ -148,12 +151,11 @@ public class CompressTool {
                 result = Integer.valueOf(fileCoding.toString(), 2).byteValue();
                 dataOutputStream.writeByte(result);
             }
-            dataOutputStream.writeChars("\n");
+            dataOutputStream.writeChars("\n"); // imply the file end
             bufferedInputStream.close();
             dataOutputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

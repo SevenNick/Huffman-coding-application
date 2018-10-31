@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf62dabf-bc1f-4dea-a009-95c0f5db7e49" name="Default" comment="changes made when import project from github to my idea">
-      <change afterPath="$PROJECT_DIR$/src/CompressTool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DecompressTool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TreeNode.java" afterDir="false" />
+    <list default="true" id="bf62dabf-bc1f-4dea-a009-95c0f5db7e49" name="Default" comment="works fine code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Huffman-coding-application/HuffmanTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Huffman-coding-application/HuffmanTree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Huffman-coding-application/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Huffman-coding-application/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CompressTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CompressTool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DecompressTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DecompressTool.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/HuffmanTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HuffmanTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/treeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/treeNode.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,28 +29,28 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="3" />
-          <entry key="java" value="10" />
+          <entry key="java" value="17" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="3" />
-          <entry key="JAVA" value="10" />
+          <entry key="JAVA" value="17" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="1" />
-          <entry key="java" value="3246" />
-          <entry key="txt" value="60" />
+          <entry key="java" value="4641" />
+          <entry key="txt" value="76" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3246" />
-          <entry key="PLAIN_TEXT" value="61" />
+          <entry key="JAVA" value="4641" />
+          <entry key="PLAIN_TEXT" value="77" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.run.usages" />
@@ -65,14 +61,89 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="541">
+              <caret line="107" column="12" selection-start-line="107" selection-start-column="12" selection-end-line="107" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#18042#18106#0" />
+                <element signature="e#18133#18198#0" />
+                <element signature="e#18492#18955#0" />
+                <element signature="e#18986#19363#0" />
+                <element signature="e#19985#20442#0" />
+                <element signature="e#20471#20929#0" />
+                <element signature="e#20960#21116#0" />
+                <element signature="e#21148#21304#0" />
+                <element signature="class#TomFileFilter#0" />
+                <element signature="e#21304#21305#0" expanded="true" />
+                <element signature="e#21341#21342#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/io/FileFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/text/Text.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-5862">
+              <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/javax/swing/JFileChooser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-5060">
+              <caret line="1451" column="35" selection-start-line="1451" selection-start-column="35" selection-end-line="1451" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/javax/swing/filechooser/FileFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-480">
+              <caret line="25" column="32" lean-forward="true" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/stage/FileChooser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="212" column="24" selection-start-line="212" selection-start-column="24" selection-end-line="212" selection-end-column="24" />
+              <folding>
+                <element signature="e#7436#7437#0" expanded="true" />
+                <element signature="e#7495#7496#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CompressTool.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="40" column="40" lean-forward="true" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+            <state relative-caret-position="761">
+              <caret line="87" column="46" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="46" />
               <folding>
+                <element signature="method#compressDirectory#0;class#CompressTool#0" />
+                <element signature="method#compressFile#0;class#CompressTool#0" />
                 <element signature="method#countWeight#0;class#CompressTool#0" />
                 <element signature="method#gainCode#0;class#CompressTool#0" />
+                <element signature="method#compress#1;class#CompressTool#0" />
               </folding>
             </state>
           </provider>
@@ -81,61 +152,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DecompressTool.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="34" column="43" lean-forward="true" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+            <state relative-caret-position="330">
+              <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/io/InputStreamReader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3565">
-              <caret line="61" column="13" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Scanner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44160">
-              <caret line="1532" column="18" selection-start-line="1532" selection-start-column="18" selection-end-line="1532" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/MyTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/io/File.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27720">
-              <caret line="965" column="16" selection-start-line="965" selection-start-column="16" selection-end-line="965" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/HuffmanTree.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="651">
-              <caret line="100" column="40" selection-start-line="100" selection-start-column="40" selection-end-line="100" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#getBaseUrl#0;class#DecompressTool#0" />
               </folding>
             </state>
           </provider>
@@ -146,6 +167,18 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="780">
               <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/HuffmanTree.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="630">
+              <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -164,6 +197,7 @@
       <find>treenode</find>
       <find>savecode</find>
       <find>pacpath</find>
+      <find>system</find>
     </findStrings>
     <replaceStrings>
       <replace>treeNode</replace>
@@ -182,11 +216,11 @@
         <option value="$PROJECT_DIR$/src/myHuffmanTree.java" />
         <option value="$PROJECT_DIR$/src/treeNode.java" />
         <option value="$PROJECT_DIR$/src/TreeNode.java" />
-        <option value="$PROJECT_DIR$/src/HuffmanTree.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/MyTest.java" />
         <option value="$PROJECT_DIR$/src/DecompressTool.java" />
         <option value="$PROJECT_DIR$/src/CompressTool.java" />
-        <option value="$PROJECT_DIR$/src/MyTest.java" />
+        <option value="$PROJECT_DIR$/src/HuffmanTree.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
   </component>
@@ -221,6 +255,12 @@
               <item name="Huffman-coding-application" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Huffman_compress" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Huffman-coding-application" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Main.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -232,7 +272,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540958765245" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540972578526" />
     <property name="last_opened_file_path" value="C:/Program Files/Git/bin/git.exe" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
@@ -249,7 +289,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MyTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -316,8 +356,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MyTest" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MyTest" />
         <item itemvalue="Application.test" />
       </list>
     </recent_temporary>
@@ -336,7 +376,7 @@
       <workItem from="1517381338455" duration="5170000" />
       <workItem from="1540888367367" duration="472000" />
       <workItem from="1540888862400" duration="15090000" />
-      <workItem from="1540950338454" duration="5016000" />
+      <workItem from="1540950338454" duration="13939000" />
     </task>
     <task id="LOCAL-00001" summary="changes made when import project from github to my idea">
       <created>1540889364013</created>
@@ -345,11 +385,18 @@
       <option name="project" value="LOCAL" />
       <updated>1540889364014</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="works fine code">
+      <created>1540958821184</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1540958821184</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29953000" />
+    <option name="totallyTimeSpent" value="38876000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -364,7 +411,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25799572" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25799572" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -373,15 +420,15 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969216" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.15092291" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.18458198" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.31161782" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32899022" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32770607" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.26058632" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32969216" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32899022" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -428,7 +475,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="changes made when import project from github to my idea" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes made when import project from github to my idea" />
+    <MESSAGE value="works fine code" />
+    <option name="LAST_COMMIT_MESSAGE" value="works fine code" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/test.java" />
@@ -469,17 +517,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#656#657#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Scanner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44160">
@@ -491,13 +528,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27720">
           <caret line="965" column="16" selection-start-line="965" selection-start-column="16" selection-end-line="965" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TreeNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -526,43 +556,114 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HuffmanTree.java">
+    <entry file="file://$PROJECT_DIR$/src/MyTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="100" column="40" selection-start-line="100" selection-start-column="40" selection-end-line="100" selection-end-column="40" />
+        <state relative-caret-position="300">
+          <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/stage/FileChooser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="212" column="24" selection-start-line="212" selection-start-column="24" selection-end-line="212" selection-end-column="24" />
+          <folding>
+            <element signature="e#7436#7437#0" expanded="true" />
+            <element signature="e#7495#7496#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/text/Text.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5862">
+          <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/io/FileFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/javax/swing/filechooser/FileFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-480">
+          <caret line="25" column="32" lean-forward="true" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/javax/swing/JFileChooser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5060">
+          <caret line="1451" column="35" selection-start-line="1451" selection-start-column="35" selection-end-line="1451" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/CompressTool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="40" column="40" lean-forward="true" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+        <state relative-caret-position="761">
+          <caret line="87" column="46" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="46" />
           <folding>
+            <element signature="method#compressDirectory#0;class#CompressTool#0" />
+            <element signature="method#compressFile#0;class#CompressTool#0" />
             <element signature="method#countWeight#0;class#CompressTool#0" />
             <element signature="method#gainCode#0;class#CompressTool#0" />
+            <element signature="method#compress#1;class#CompressTool#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DecompressTool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="34" column="43" lean-forward="true" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+        <state relative-caret-position="330">
+          <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getBaseUrl#0;class#DecompressTool#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HuffmanTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MyTest.java">
+    <entry file="file://$PROJECT_DIR$/src/TreeNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+        <state relative-caret-position="780">
+          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="107" column="12" selection-start-line="107" selection-start-column="12" selection-end-line="107" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#18042#18106#0" />
+            <element signature="e#18133#18198#0" />
+            <element signature="e#18492#18955#0" />
+            <element signature="e#18986#19363#0" />
+            <element signature="e#19985#20442#0" />
+            <element signature="e#20471#20929#0" />
+            <element signature="e#20960#21116#0" />
+            <element signature="e#21148#21304#0" />
+            <element signature="class#TomFileFilter#0" />
+            <element signature="e#21304#21305#0" expanded="true" />
+            <element signature="e#21341#21342#0" expanded="true" />
           </folding>
         </state>
       </provider>
